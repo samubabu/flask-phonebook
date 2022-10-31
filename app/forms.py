@@ -1,14 +1,26 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import DataRequired, EqualTo
 
 
-class SignUpForm(FlaskForm):
+class AddressForm(FlaskForm):
     first = StringField('First Name', validators=[DataRequired()])
     last = StringField('Last Name', validators=[DataRequired()])
     phone = StringField('Phone Number', validators=[DataRequired()])
     confirm_phone = StringField('Confirm Phone Number', validators=[DataRequired(), EqualTo('phone')])
     address = StringField('Address', validators=[DataRequired()])
+    submit = SubmitField()
+
+class SignUpForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_pass = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField()
+
+class LogInForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField()
 
 
